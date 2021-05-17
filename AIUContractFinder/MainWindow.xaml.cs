@@ -40,7 +40,7 @@ namespace AIUContractFinder
                 string s = str.Substring(21);
             }
 
-            PC.AddPath("C:/SRPDContracts");
+            //PC.AddPath("C:/SRPDContracts");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
