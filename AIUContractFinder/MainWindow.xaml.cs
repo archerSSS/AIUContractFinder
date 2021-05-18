@@ -38,16 +38,17 @@ namespace AIUContractFinder
             if (str.Contains(baseFilesDirection))
             {
                 string s = str.Substring(21);
+                PC.AddPath(s);
             }
 
-            PC.AddPath("C:/SRPDContracts");
+            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CollectFiles_Click(object sender, RoutedEventArgs e)
         {
-            string p = PC.GetPath(0);
-            List<string> l = PC.CollectChildPaths(p);
-            PC.SetPaths(l);
+            string root = PC.GetPath(0);
+            List<string> paths = PC.CollectChildPaths(root);
+            PC.SetPaths(paths);
             PC.CollectFilesPaths();
         }
     }
