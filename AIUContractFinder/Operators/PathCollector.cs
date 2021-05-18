@@ -11,6 +11,7 @@ namespace AIUContractFinder.Operators
     class PathCollector : IDisposable
     {
         private List<string> paths;
+        private List<string> filesPaths;
 
         private IntPtr handle;
         // Other managed resource this class uses.
@@ -82,6 +83,7 @@ namespace AIUContractFinder.Operators
         public PathCollector()
         {
             paths = new List<string>();
+            filesPaths = new List<string>();
             // Do not re-create Dispose clean-up code here.
             // Calling Dispose(false) is optimal in terms of
             // readability and maintainability.
@@ -103,7 +105,7 @@ namespace AIUContractFinder.Operators
             return "";
         }
 
-        public bool CollectChildPaths(string p)
+        /*public bool CollectChildPaths(string p)
         {
             DirectoryInfo di = new DirectoryInfo(p);
             if (di.Exists)
@@ -120,6 +122,53 @@ namespace AIUContractFinder.Operators
             }
 
             return false;
+        }*/
+        public void SetPaths(List<string> list)
+        {
+            paths = list;
+        }
+
+        public List<string> CollectChildPaths(string p)
+        {
+            List<string> list = new List<string>();
+            DirectoryInfo di = new DirectoryInfo(p);
+            if (di.Exists)
+            {
+                DirectoryInfo[] dis = di.GetDirectories();
+                for (int i = 0; i < dis.Length; i++)
+                {
+                    list.Add(dis[i].FullName);
+                }
+
+                if (dis.Length > 0)
+                {
+                    for (int i = 0; i < dis.Length; i++)
+                    {
+                        list.AddRange(CollectChildPaths(dis[i].FullName));
+                    }
+                }
+            }
+            return list;
+        }
+
+        public void CollectFilesPaths()
+        {
+            foreach (string p in paths)
+            {
+                DirectoryInfo di = new DirectoryInfo(p);
+                FileInfo[] fis = di.GetFiles();
+                if (fis.Length > 0)
+                {
+                    for (int i = 0; i < fis.Length; i++)
+                    {
+                        string fn = fis[i].FullName;
+                        if (fn[fn.Length - 1] == 't' && fn[fn.Length - 2] == 'x' && fn[fn.Length - 3] == 't')
+                        {
+                            filesPaths.Add(fis[i].FullName);
+                        }
+                    }
+                }
+            }
         }
     }
 }

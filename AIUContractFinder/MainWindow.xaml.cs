@@ -40,13 +40,15 @@ namespace AIUContractFinder
                 string s = str.Substring(21);
             }
 
-            //PC.AddPath("C:/SRPDContracts");
+            PC.AddPath("C:/SRPDContracts");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string p = PC.GetPath(0);
-            PC.CollectChildPaths(p);
+            List<string> l = PC.CollectChildPaths(p);
+            PC.SetPaths(l);
+            PC.CollectFilesPaths();
         }
     }
 }
