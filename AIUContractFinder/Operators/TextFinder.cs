@@ -24,6 +24,7 @@ namespace AIUContractFinder.Operators
             {
                 if (str.Contains(text)) return p;
             }
+
             return "";
         }
     }
