@@ -151,6 +151,16 @@ namespace AIUContractFinder.Operators
             return list;
         }
 
+        public List<string> GetPaths()
+        {
+            return paths;
+        }
+
+        public List<string> GetFiles()
+        {
+            return filesPaths;
+        }
+
         public void CollectFilesPaths()
         {
             foreach (string p in paths)

@@ -11,7 +11,16 @@ namespace AIUContractFinder.Operators
     {
         private string text;
 
+        public TextFinder()
+        {
+        }
+
         public TextFinder(string t)
+        {
+            text = t;
+        }
+
+        public void SetText(string t)
         {
             text = t;
         }
@@ -23,6 +32,7 @@ namespace AIUContractFinder.Operators
             while (!string.IsNullOrEmpty(str))
             {
                 if (str.Contains(text)) return p;
+                str = SR.ReadLine();
             }
 
             return "";
