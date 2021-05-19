@@ -85,7 +85,10 @@ namespace AIUContractFinder
             TextFinder TF = new TextFinder();
             for (int i = 0; i < numberFields.Length; i++)
             {
-                if (!string.IsNullOrEmpty(numberFields[i].Text)) TF.SetText(numberFields[i].Text);
+                if (!string.IsNullOrEmpty(numberFields[i].Text))
+                    TF.SetText(numberFields[i].Text);
+                else continue;
+
                 foreach (string p in PC.GetFiles())
                 {
                     string contract = TF.FindText(p);
