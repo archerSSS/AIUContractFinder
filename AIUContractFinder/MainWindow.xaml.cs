@@ -1,9 +1,11 @@
 ﻿using AIUContractFinder.Operators;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,6 +28,9 @@ namespace AIUContractFinder
         private string baseFilesDirection;
         TextBox[] numberFields;
         TextBox[] contractFields;
+
+        bool up;
+        bool windowClosed;
 
         public MainWindow()
         {
@@ -66,6 +71,34 @@ namespace AIUContractFinder
             contractFields[7] = TextContract8;
             contractFields[8] = TextContract9;
             contractFields[9] = TextContract10;
+
+            Thread t = new Thread(AnimateButton);
+            t.Start();
+        }
+
+        private void AnimateButton()
+        {
+            if (windowClosed) return; 
+            Dispatcher.Invoke(() =>
+            {
+                double d = ButtonAnimated.Margin.Bottom;
+                if (up)
+                {
+                    d += 0.01;
+                    if (d > 120) up = false;
+                }
+                else
+                {
+                    d -= 0.01;
+                    if (d < 70) up = true;
+                }
+
+                Thickness tt = ButtonAnimated.Margin;
+                tt.Bottom = d;
+                ButtonAnimated.Margin = tt;
+            });
+            Thread t = new Thread(AnimateButton);
+            t.Start();
         }
 
         private void CollectFiles_Click(object sender, RoutedEventArgs e)
@@ -108,6 +141,12 @@ namespace AIUContractFinder
                 numberFields[i].Text = "";
                 contractFields[i].Text = "";
             }
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            windowClosed = true;
+            base.OnClosing(e);
         }
     }
 }

@@ -12,6 +12,7 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="0.5*"></ColumnDefinition>
             <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"></RowDefinition>
@@ -26,26 +27,26 @@
             <RowDefinition Height="0.3*"></RowDefinition>
             <RowDefinition Height="0.3*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox x:Name="TextNumber1" Grid.Column="0" Grid.Row="0" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd"></TextBox>
-        <TextBox x:Name="TextNumber2" Grid.Column="0" Grid.Row="1" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd"></TextBox>
-        <TextBox x:Name="TextNumber3" Grid.Column="0" Grid.Row="2" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd"></TextBox>
-        <TextBox x:Name="TextNumber4" Grid.Column="0" Grid.Row="3" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd"></TextBox>
-        <TextBox x:Name="TextNumber5" Grid.Column="0" Grid.Row="4" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd"></TextBox>
-        <TextBox x:Name="TextNumber6" Grid.Column="0" Grid.Row="5" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd"></TextBox>
-        <TextBox x:Name="TextNumber7" Grid.Column="0" Grid.Row="6" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd"></TextBox>
-        <TextBox x:Name="TextNumber8" Grid.Column="0" Grid.Row="7" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd"></TextBox>
-        <TextBox x:Name="TextNumber9" Grid.Column="0" Grid.Row="8" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd"></TextBox>
-        <TextBox x:Name="TextNumber10" Grid.Column="0" Grid.Row="9" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd"></TextBox>
-        <TextBox x:Name="TextContract1" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue"></TextBox>
-        <TextBox x:Name="TextContract2" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue"></TextBox>
-        <TextBox x:Name="TextContract3" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue"></TextBox>
-        <TextBox x:Name="TextContract4" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue"></TextBox>
-        <TextBox x:Name="TextContract5" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue"></TextBox>
-        <TextBox x:Name="TextContract6" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue"></TextBox>
-        <TextBox x:Name="TextContract7" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue"></TextBox>
-        <TextBox x:Name="TextContract8" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue"></TextBox>
-        <TextBox x:Name="TextContract9" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue"></TextBox>
-        <TextBox x:Name="TextContract10" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue"></TextBox>
+        <TextBox x:Name="TextNumber1" Grid.Column="0" Grid.Row="0" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd" FontSize="20"></TextBox>
+        <TextBox x:Name="TextNumber2" Grid.Column="0" Grid.Row="1" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd" FontSize="20"></TextBox>
+        <TextBox x:Name="TextNumber3" Grid.Column="0" Grid.Row="2" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd" FontSize="20"></TextBox>
+        <TextBox x:Name="TextNumber4" Grid.Column="0" Grid.Row="3" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd" FontSize="20"></TextBox>
+        <TextBox x:Name="TextNumber5" Grid.Column="0" Grid.Row="4" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd" FontSize="20"></TextBox>
+        <TextBox x:Name="TextNumber6" Grid.Column="0" Grid.Row="5" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd" FontSize="20"></TextBox>
+        <TextBox x:Name="TextNumber7" Grid.Column="0" Grid.Row="6" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd" FontSize="20"></TextBox>
+        <TextBox x:Name="TextNumber8" Grid.Column="0" Grid.Row="7" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd" FontSize="20"></TextBox>
+        <TextBox x:Name="TextNumber9" Grid.Column="0" Grid.Row="8" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd" FontSize="20"></TextBox>
+        <TextBox x:Name="TextNumber10" Grid.Column="0" Grid.Row="9" Margin="0,5,10,5" BorderThickness="3" BorderBrush="#3366dd" FontSize="20"></TextBox>
+        <TextBox x:Name="TextContract1" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue" FontSize="20"></TextBox>
+        <TextBox x:Name="TextContract2" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue" FontSize="20"></TextBox>
+        <TextBox x:Name="TextContract3" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue" FontSize="20"></TextBox>
+        <TextBox x:Name="TextContract4" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue" FontSize="20"></TextBox>
+        <TextBox x:Name="TextContract5" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue" FontSize="20"></TextBox>
+        <TextBox x:Name="TextContract6" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue" FontSize="20"></TextBox>
+        <TextBox x:Name="TextContract7" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue" FontSize="20"></TextBox>
+        <TextBox x:Name="TextContract8" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue" FontSize="20"></TextBox>
+        <TextBox x:Name="TextContract9" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue" FontSize="20"></TextBox>
+        <TextBox x:Name="TextContract10" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3" Margin="10,5,10,5" BorderThickness="3" BorderBrush="CadetBlue" FontSize="20"></TextBox>
         <Border Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="4" Background="#666688" BorderThickness="3" BorderBrush="FloralWhite">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -63,6 +64,8 @@
             </Grid>
             
         </Border>
-        
+        <Border Grid.Column="4" Grid.Row="0" Grid.RowSpan="6">
+            <Button x:Name="ButtonAnimated" Margin="0,50,0,100"></Button>
+        </Border>
     </Grid>
 </Window>
