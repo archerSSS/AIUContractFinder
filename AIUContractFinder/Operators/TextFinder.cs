@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace AIUContractFinder.Operators
 {
     class TextFinder
     {
         private string text;
+
 
         public TextFinder()
         {
@@ -24,6 +27,13 @@ namespace AIUContractFinder.Operators
         {
             text = t;
         }
+
+        private void Find()
+        {
+            Thread.Sleep(2000);
+            
+        }
+
 
         public string FindText(string p)
         {

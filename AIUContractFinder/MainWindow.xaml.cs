@@ -25,20 +25,25 @@ namespace AIUContractFinder
     public partial class MainWindow : Window
     {
         PathCollector PC;
+        TextFinder TF;
         private string baseDirectionInfo;
         TextBox[] numberFields;
         TextBox[] contractFields;
 
+        int counter = 0;
+        bool searchingFile;
         bool up;
         bool windowClosed;
 
         public MainWindow()
         {
             InitializeComponent();
-
+            searchingFile = false;
 
             baseDirectionInfo = "Contracts direction";
             PC = new PathCollector();
+            TF = new TextFinder();
+
             string dir = Directory.GetCurrentDirectory() + "/ContractsDirection.txt";
 
             StreamReader SR = new StreamReader(dir);
@@ -73,12 +78,16 @@ namespace AIUContractFinder
             contractFields[7] = TextContract8;
             contractFields[8] = TextContract9;
             contractFields[9] = TextContract10;
-
-            //CreateFiles("alp", 800);
-            /*Thread t = new Thread(AnimateButton);
-            t.Start();*/
         }
 
+        private void UpdateFields()
+        {
+            for (int i = 0; i < 1000000000; i++)
+            {
+                counter++;
+            }
+            Dispatcher.Invoke(()=> { numberFields[0].Text = "shhdf"; });
+        }
 
         // For Testers Only
         #region
@@ -104,27 +113,6 @@ namespace AIUContractFinder
 
         private void AnimateButton()
         {
-            if (windowClosed) return; 
-            Dispatcher.Invoke(() =>
-            {
-                /*double d = ButtonAnimated.Margin.Bottom;
-                if (up)
-                {
-                    d += 0.01;
-                    if (d > 120) up = false;
-                }
-                else
-                {
-                    d -= 0.01;
-                    if (d < 70) up = true;
-                }
-
-                Thickness tt = ButtonAnimated.Margin;
-                tt.Bottom = d;
-                ButtonAnimated.Margin = tt;*/
-            });
-            Thread t = new Thread(AnimateButton);
-            t.Start();
         }
 
         private void CollectFiles_Click(object sender, RoutedEventArgs e)
@@ -141,25 +129,85 @@ namespace AIUContractFinder
 
         private void FindFile_Click(object sender, RoutedEventArgs e)
         {
-            TextFinder TF = new TextFinder();
-            for (int i = 0; i < numberFields.Length; i++)
+            if (!searchingFile)
             {
-                if (!string.IsNullOrEmpty(numberFields[i].Text))
-                    TF.SetText(numberFields[i].Text);
-                else continue;
+                searchingFile = true;
+                Thread t = new Thread(FindFile);
+                t.Start();
+            }
+            else MessageBox.Show("CF is currectly searching files... please wait.");
+
+        }
+
+        private void SimulateAwaiting()
+        {
+            Thread.Sleep(10000);
+        }
+
+        private void FindFile()
+        {
+            string[] fields = new string[numberFields.Length];
+            for (int i = 0; i < fields.Length; i++)
+            {
+                Dispatcher.Invoke(() => fields[i] = numberFields[i].Text);
+            }
+
+            int progressLen = PC.GetFiles().Count;
+            double progressHeight = 0;
+            double progressUnit = 0;
+            double currentProgress = 0;
+            Dispatcher.Invoke(()=> progressHeight = BorderProgessContainer.ActualHeight);
+            Dispatcher.Invoke(() => progressUnit = progressHeight / progressLen);
+
+
+            for (int i = 0; i < fields.Length; i++)
+            {
+                Dispatcher.Invoke(() => RectProgress.Height = 0);
+                if (string.IsNullOrEmpty(fields[i])) continue;
 
                 string contract = "";
-                foreach (string p in PC.GetFiles())
+                foreach (string file in PC.GetFiles())
                 {
-                    contract = TF.FindText(p);
+                    TF.SetText(fields[i]);
+                    contract = TF.FindText(file);
                     if (!string.IsNullOrEmpty(contract))
                     {
-                        contractFields[i].Text = contract;
+                        Dispatcher.Invoke(()=> contractFields[i].Text = contract );
                         break;
                     }
+                    if (string.IsNullOrEmpty(contract)) Dispatcher.Invoke(() => contractFields[i].Text = "NONE");
+
+                    currentProgress += progressUnit;
+                    Dispatcher.Invoke(()=> RectProgress.Height = currentProgress);
                 }
-                if (string.IsNullOrEmpty(contract)) contractFields[i].Text = "NONE";
+
+                currentProgress = 0;
+                Dispatcher.Invoke(() => RectProgress.Height = currentProgress);
             }
+            searchingFile = false;
+            /*Dispatcher.Invoke(() => {
+                TextFinder TF = new TextFinder();
+                for (int i = 0; i < numberFields.Length; i++)
+                {
+                    Thread.Sleep(5000);
+                    if (!string.IsNullOrEmpty(numberFields[i].Text))
+                        TF.SetText(numberFields[i].Text);
+                    else continue;
+
+                    string contract = "";
+                    foreach (string p in PC.GetFiles())
+                    {
+                        contract = TF.FindText(p);
+                        if (!string.IsNullOrEmpty(contract))
+                        {
+                            contractFields[i].Text = contract;
+                            break;
+                        }
+                    }
+                    if (string.IsNullOrEmpty(contract)) contractFields[i].Text = "NONE";
+                }
+                searchingFile = false;
+            });*/
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)

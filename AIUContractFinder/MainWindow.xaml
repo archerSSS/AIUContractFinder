@@ -64,9 +64,10 @@
             </Grid>
             
         </Border>
-        <!--Border Grid.Column="4" Grid.Row="0" Grid.RowSpan="6">
-            <Button x:Name="ButtonAnimated" Margin="0,50,0,100"></Button>
-        </Border-->
-        <Rectangle Grid.Column="4" Grid.Row="5"></Rectangle>
+        
+        <Border x:Name="BorderProgessContainer" Grid.Column="4" Grid.Row="0" Grid.RowSpan="5" BorderBrush="LawnGreen" BorderThickness="3" Margin="20,10,20,0">
+            <Rectangle x:Name="RectProgress" Fill="Blue"></Rectangle>
+        </Border>
+        
     </Grid>
 </Window>
