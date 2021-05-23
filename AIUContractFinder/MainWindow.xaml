@@ -64,8 +64,9 @@
             </Grid>
             
         </Border>
-        <Border Grid.Column="4" Grid.Row="0" Grid.RowSpan="6">
+        <!--Border Grid.Column="4" Grid.Row="0" Grid.RowSpan="6">
             <Button x:Name="ButtonAnimated" Margin="0,50,0,100"></Button>
-        </Border>
+        </Border-->
+        <Rectangle Grid.Column="4" Grid.Row="5"></Rectangle>
     </Grid>
 </Window>

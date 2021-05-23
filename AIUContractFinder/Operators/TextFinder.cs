@@ -34,6 +34,7 @@ namespace AIUContractFinder.Operators
                 if (str.Contains(text)) return p;
                 str = SR.ReadLine();
             }
+            SR.Close();
 
             return "";
         }

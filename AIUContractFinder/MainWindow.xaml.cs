@@ -25,7 +25,7 @@ namespace AIUContractFinder
     public partial class MainWindow : Window
     {
         PathCollector PC;
-        private string baseFilesDirection;
+        private string baseDirectionInfo;
         TextBox[] numberFields;
         TextBox[] contractFields;
 
@@ -36,13 +36,15 @@ namespace AIUContractFinder
         {
             InitializeComponent();
 
-            baseFilesDirection = "Contracts direction";
+
+            baseDirectionInfo = "Contracts direction";
             PC = new PathCollector();
             string dir = Directory.GetCurrentDirectory() + "/ContractsDirection.txt";
 
             StreamReader SR = new StreamReader(dir);
             string str = SR.ReadLine();
-            if (str.Contains(baseFilesDirection))
+            SR.Close();
+            if (str.Contains(baseDirectionInfo))
             {
                 string s = str.Substring(21);
                 PC.AddPath(s);
@@ -72,16 +74,40 @@ namespace AIUContractFinder
             contractFields[8] = TextContract9;
             contractFields[9] = TextContract10;
 
-            Thread t = new Thread(AnimateButton);
-            t.Start();
+            //CreateFiles("alp", 800);
+            /*Thread t = new Thread(AnimateButton);
+            t.Start();*/
         }
+
+
+        // For Testers Only
+        #region
+        private void CreateFiles(string baseName, int nn)
+        {
+            for (int i = 0; i < nn; i++)
+            {
+                StreamWriter SW = new StreamWriter("E:/Univers/" + baseName + i + ".txt");
+                Random r = new Random();
+
+                for (int j = 0; j < 10000; j++)
+                {
+                    string n = r.Next(999999) + "";
+                    n += r.Next(999999) + "";
+                    n += r.Next(999999) + "";
+                    SW.WriteLine(n);
+                }
+                SW.Close();
+            }
+        }
+        #endregion
+
 
         private void AnimateButton()
         {
             if (windowClosed) return; 
             Dispatcher.Invoke(() =>
             {
-                double d = ButtonAnimated.Margin.Bottom;
+                /*double d = ButtonAnimated.Margin.Bottom;
                 if (up)
                 {
                     d += 0.01;
@@ -95,7 +121,7 @@ namespace AIUContractFinder
 
                 Thickness tt = ButtonAnimated.Margin;
                 tt.Bottom = d;
-                ButtonAnimated.Margin = tt;
+                ButtonAnimated.Margin = tt;*/
             });
             Thread t = new Thread(AnimateButton);
             t.Start();
@@ -122,15 +148,17 @@ namespace AIUContractFinder
                     TF.SetText(numberFields[i].Text);
                 else continue;
 
+                string contract = "";
                 foreach (string p in PC.GetFiles())
                 {
-                    string contract = TF.FindText(p);
+                    contract = TF.FindText(p);
                     if (!string.IsNullOrEmpty(contract))
                     {
                         contractFields[i].Text = contract;
                         break;
                     }
                 }
+                if (string.IsNullOrEmpty(contract)) contractFields[i].Text = "NONE";
             }
         }
 

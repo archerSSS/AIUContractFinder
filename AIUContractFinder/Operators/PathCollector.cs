@@ -12,6 +12,8 @@ namespace AIUContractFinder.Operators
     {
         private List<string> paths;
         private List<string> filesPaths;
+        private readonly string TXT_EXTENSION;
+        private readonly string CSV_EXTENSION;
 
         private IntPtr handle;
         // Other managed resource this class uses.
@@ -84,6 +86,8 @@ namespace AIUContractFinder.Operators
         {
             paths = new List<string>();
             filesPaths = new List<string>();
+            TXT_EXTENSION = "txt";
+            CSV_EXTENSION = "csv";
             // Do not re-create Dispose clean-up code here.
             // Calling Dispose(false) is optimal in terms of
             // readability and maintainability.
@@ -172,7 +176,8 @@ namespace AIUContractFinder.Operators
                     for (int i = 0; i < fis.Length; i++)
                     {
                         string fn = fis[i].FullName;
-                        if (fn[fn.Length - 1] == 't' && fn[fn.Length - 2] == 'x' && fn[fn.Length - 3] == 't')
+                        
+                        if (fn.EndsWith(TXT_EXTENSION) || fn.EndsWith(CSV_EXTENSION))
                         {
                             filesPaths.Add(fis[i].FullName);
                         }
