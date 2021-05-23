@@ -146,23 +146,29 @@ namespace AIUContractFinder
 
         private void FindFile()
         {
-            string[] fields = new string[numberFields.Length];
-            for (int i = 0; i < fields.Length; i++)
-            {
-                Dispatcher.Invoke(() => fields[i] = numberFields[i].Text);
-            }
-
             int progressLen = PC.GetFiles().Count;
             double progressHeight = 0;
             double progressUnit = 0;
             double currentProgress = 0;
-            Dispatcher.Invoke(()=> progressHeight = BorderProgessContainer.ActualHeight);
-            Dispatcher.Invoke(() => progressUnit = progressHeight / progressLen);
+            Thickness topMargin = new Thickness();
+            string[] fields = new string[numberFields.Length];
+            for (int i = 0; i < fields.Length; i++)
+            {
+                Dispatcher.Invoke(() => {
+                    fields[i] = numberFields[i].Text;
+                    topMargin = RectProgress.Margin;
+                    progressHeight = BorderProgessContainer.ActualHeight;
+                    currentProgress = progressHeight;
+                    progressUnit = progressHeight / progressLen;
+                    topMargin.Top = progressHeight;
+                    RectProgress.Margin = topMargin;
+                });
+            }
 
 
             for (int i = 0; i < fields.Length; i++)
             {
-                Dispatcher.Invoke(() => RectProgress.Height = 0);
+                //Dispatcher.Invoke(() => RectProgress.Height = 0);
                 if (string.IsNullOrEmpty(fields[i])) continue;
 
                 string contract = "";
@@ -177,12 +183,14 @@ namespace AIUContractFinder
                     }
                     if (string.IsNullOrEmpty(contract)) Dispatcher.Invoke(() => contractFields[i].Text = "NONE");
 
-                    currentProgress += progressUnit;
-                    Dispatcher.Invoke(()=> RectProgress.Height = currentProgress);
+                    currentProgress -= progressUnit;
+                    topMargin.Top = currentProgress;
+                    Dispatcher.Invoke(() => RectProgress.Margin = topMargin);
                 }
 
-                currentProgress = 0;
-                Dispatcher.Invoke(() => RectProgress.Height = currentProgress);
+                currentProgress = progressHeight;
+                topMargin.Top = currentProgress;
+                Dispatcher.Invoke(() => RectProgress.Margin = topMargin);
             }
             searchingFile = false;
             /*Dispatcher.Invoke(() => {
